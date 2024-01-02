@@ -7,7 +7,7 @@ class ScoreComponent extends PositionComponent {
   late int score;
 
   ScoreComponent(this.score) {
-    textStyle = TextStyle(color: Colors.white, fontSize: 24);
+    textStyle = TextStyle(color: Colors.white, fontSize: 12);
     textPainter = TextPainter(
       text: TextSpan(text: 'Score: $score', style: textStyle),
       textDirection: TextDirection.ltr,
@@ -22,7 +22,7 @@ class ScoreComponent extends PositionComponent {
 
   @override
   void render(Canvas canvas) {
-    textPainter.paint(canvas, Offset(20, 20));
+    textPainter.paint(canvas, Offset(5, 20));
   }
 
   @override

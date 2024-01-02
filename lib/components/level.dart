@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
+import 'package:pixel_adventure/components/Rino.dart';
 import 'package:pixel_adventure/components/background_tile.dart';
+import 'package:pixel_adventure/components/bat.dart';
 import 'package:pixel_adventure/components/checkpoint.dart';
 import 'package:pixel_adventure/components/chicken.dart';
 import 'package:pixel_adventure/components/collision_block.dart';
@@ -77,6 +79,17 @@ class Level extends World with HasGameRef<PixelAdventure> {
             );
             add(saw);
             break;
+          case 'Bat':
+            final offNeg = spawnPoint.properties.getValue('offNeg');
+            final offPos = spawnPoint.properties.getValue('offPos');
+            final bat = Bat(
+              offNeg: offNeg,
+              offPos: offPos,
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+            );
+            add(bat);
+            break;
           case 'Checkpoint':
             final checkpoint = Checkpoint(
               position: Vector2(spawnPoint.x, spawnPoint.y),
@@ -94,6 +107,17 @@ class Level extends World with HasGameRef<PixelAdventure> {
               offPos: offPos,
             );
             add(chicken);
+            break;
+          case 'Rino':
+            final offNeg = spawnPoint.properties.getValue('offNeg');
+            final offPos = spawnPoint.properties.getValue('offPos');
+            final rino = Rino(
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+              offNeg: offNeg,
+              offPos: offPos,
+            );
+            add(rino);
             break;
           default:
         }

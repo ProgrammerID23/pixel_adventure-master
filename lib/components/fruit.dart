@@ -66,7 +66,7 @@ class Fruit extends SpriteAnimationComponent
           amount: 6,
           stepTime: stepTime,
           textureSize: Vector2.all(32),
-          loop: true,
+          loop: false,
         ),
       );
 
