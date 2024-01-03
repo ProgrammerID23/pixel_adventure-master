@@ -70,6 +70,7 @@ class Fruit extends SpriteAnimationComponent
         ),
       );
 
+      // Simpan skor ke database saat pemain mengumpulkan buah
       await animationTicker?.completed;
       removeFromParent();
     }

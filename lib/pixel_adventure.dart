@@ -9,6 +9,7 @@ import 'package:pixel_adventure/components/Scoredisplay.dart';
 import 'package:pixel_adventure/components/jump_button.dart';
 import 'package:pixel_adventure/components/player.dart';
 import 'package:pixel_adventure/components/level.dart';
+import 'components/DatabaseController.dart';
 
 class PixelAdventure extends FlameGame
     with
@@ -23,16 +24,26 @@ class PixelAdventure extends FlameGame
   late CameraComponent cam;
   Player player = Player(character: 'Mask Dude');
   late JoystickComponent joystick;
-  bool showControls = false;
+  bool showControls = true;
   bool playSounds = true;
   double soundVolume = 1.0;
   List<String> levelNames = ['Level-01', 'Level-02'];
   int currentLevelIndex = 0;
+  bool initialized = false;
 
   @override
   FutureOr<void> onLoad() async {
-    // Load all images into cache
     await images.loadAllImages();
+
+    // Inisialisasi DatabaseController
+
+    // Inisialisasi ScoreComponent
+    scoreComponent = ScoreComponent(score);
+    add(scoreComponent);
+
+    // Tetapkan bahwa inisialisasi sudah selesai
+    initialized = true;
+
 
     _loadLevel();
 
@@ -43,10 +54,9 @@ class PixelAdventure extends FlameGame
 
     scoreComponent = ScoreComponent(score);
     add(scoreComponent);
-
-
     return super.onLoad();
   }
+
 
   @override
   void update(double dt) {
@@ -82,9 +92,8 @@ class PixelAdventure extends FlameGame
 
   void changeScore(int newScore) {
     score = newScore;
-    updateScoreDisplay(); // Memperbarui tampilan skor setiap kali nilai skor berubah
+    scoreComponent.updateScore(score);
   }
-
 
   void updateJoystick() {
     switch (joystick.direction) {

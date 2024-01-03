@@ -7,7 +7,7 @@ class ScoreComponent extends PositionComponent {
   late int score;
 
   ScoreComponent(this.score) {
-    textStyle = TextStyle(color: Colors.white, fontSize: 12);
+    textStyle = TextStyle(color: Colors.white, fontSize: 15);
     textPainter = TextPainter(
       text: TextSpan(text: 'Score: $score', style: textStyle),
       textDirection: TextDirection.ltr,
